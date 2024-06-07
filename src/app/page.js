@@ -103,12 +103,12 @@ export default function Home() {
 
   return (
     <main className="w-screen min-h-screen p-24">
-      <h1 className="text-3xl mb-5">Fogliazione V.0.1</h1>
+      <h1 className="text-3xl mb-5">Foliazione V.0.1</h1>
       <p>asse X: {typeX} asse Y: {typeY}</p><br></br>
       <p>colonne : {col} righe : {row}</p><br></br>
       <p>scarto X : {scartoX } scarto Y: {scartoY} Area di Scarto : {scartoX*scartoY}cm^2</p><br></br>
       <p>pagine totali : {col*row}</p><br></br>
-      <button onClick={() => cal(3, 23.5, 16)} className="p-2 bg-red-500"> calcola</button>
+      <button onClick={() => cal(1, 47, 16)} className="p-2 bg-red-500"> calcola</button>
     </main>
   );
 }

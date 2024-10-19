@@ -202,7 +202,7 @@ export default function Home() {
                 </p>) : (
                   <div className=" bg-[#f8f8f8] p-2 py-4 rounded-sm flex items-start space-x-3">
                     <img src="/icons/warning.svg" alt="warning icon" width={24} height={24}/>
-                    <p>Ll&apos;applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>illogico</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
+                    <p>L&apos;applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>impossibile da fare</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
                   </div>
                 )
               }
@@ -212,7 +212,7 @@ export default function Home() {
 
       </div>
       <footer className=" absolute bottom-0 w-full flex justify-center items-center bg-red-500 p-4">
-        <p className="text-white">Per eventuali querele scrivere <a className="text-black underline" href="https://www.instagram.com/pii.studios/"><b>a questo account</b></a> | per le cose da nerd  <a className="text-black underline" href="https://github.com/Pippoide/Foliazione-Automatica"><b>link alla repository</b> </a> </p>
+        <p className="text-white">Per eventuali querele o commenti scrivere <a className="text-black underline" href="https://www.instagram.com/pii.studios/"><b>a questo account</b></a> | per le cose di noi nerd  <a className="text-black underline" href="https://github.com/Pippoide/Foliazione-Automatica"><b>link alla repository</b> </a> </p>
       </footer>
     </div>
   );

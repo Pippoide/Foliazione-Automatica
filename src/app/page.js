@@ -46,11 +46,10 @@ export default function Home() {
     }
     
   };
+  console.log("Ciao, allora non sono l'unico che fa ispeziona nei siti O.O!, 20/10/2024, programmato e ideato da Filippo Poma durante il 1°/2° anno di IED a Graphic Design")
 
   useEffect(() => {
-    console.log("restoFoglioWidth aggiornato:", restoFoglioWidth);
-    console.log("restoFoglioWidth aggiornato:", restoFoglioHeight);
-    console.log("resto totale in cm2 " + restoFoglioHeight * restoFoglioWidth)
+    
   }, [restoFoglioWidth, restoFoglioHeight]);
 
   const verifyInput = (size, type) => {
@@ -203,7 +202,7 @@ export default function Home() {
                 </p>) : (
                   <div className=" bg-[#f8f8f8] p-2 py-4 rounded-sm flex items-start space-x-3">
                     <img src="/icons/warning.svg" alt="warning icon" width={24} height={24}/>
-                    <p>L'applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>illogico</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
+                    <p>Ll&apos;applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>illogico</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
                   </div>
                 )
               }

@@ -105,12 +105,12 @@ export default function Home() {
     <div className="w-screen min-h-screen h-full p-12 md:p-24 flex flex-col justify-start items-start bg-white">
       <main className="  flex flex-col">
 
-        <h1 className="text-3xl mb-5">Folianator3000 V0.2</h1>
+        <h1 className="text-3xl mb-5 text-black">Folianator3000 V0.2</h1>
         <div className="flex flex-col w-full space-y-5">
 
           {/** label selection format */}
           <label className="w-full flex flex-col">
-            <p><b>Seleziona prima il formato</b>, accanto vedi le dimensioni massime con i margini gia tolti</p>
+            <p className="text-black"><b>Seleziona prima il formato</b>, accanto vedi le dimensioni massime con i margini gia tolti</p>
             <select
               className="w-full bg-[#f8f8f8] text-black p-2 rounded-sm"
               value={selectedFormat}
@@ -128,7 +128,7 @@ export default function Home() {
 
           {/** label radio */}
           <label className="w-full flex flex-col">
-            <p>Seleziona il tipo di foliazione</p>
+            <p className="text-black">Seleziona il tipo di foliazione</p>
             <div className="flex space-x-3">
               <label className="space-x-1">
                 <input
@@ -137,7 +137,7 @@ export default function Home() {
                   checked={doubleface === true}
                   onChange={handleChangeDoubleFace}
                 />
-                <span>Pagine unite</span>
+                <span className="text-black">Pagine unite</span>
               </label>
               <label className="space-x-1">
                 <input
@@ -146,14 +146,14 @@ export default function Home() {
                   checked={doubleface === false}
                   onChange={handleChangeDoubleFace}
                 />
-                <span>Pagine singole</span>
+                <span className="text-black">Pagine singole</span>
               </label>
             </div>
           </label>
 
           {/**Label input */}
           <label className="flex flex-col">
-            <p>Inserisci le dimensioni <b>della pagina singola in centimetri</b> </p>
+            <p className="text-black">Inserisci le dimensioni <b>della pagina singola in centimetri</b> </p>
             <div className="flex flex-col space-y-2">
               <input
                 className="p-2 bg-[#f8f8f8]"
@@ -179,7 +179,7 @@ export default function Home() {
           <button type="onsubmit" onClick={() => calculate()} className="p-2 bg-red-500 text-white"> calcola</button>
           <div>
             {rowDefinitive && columnDefinitive && restoFoglioHeight && restoFoglioWidth &&
-              <p>
+              <p className="text-black">
                 Colonne = {columnDefinitive} <br></br>
                 Righe = {rowDefinitive}<br></br>
                 Pagine = {rowDefinitive * columnDefinitive} <br></br>

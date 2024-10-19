@@ -30,10 +30,12 @@ export default function Home() {
 
   const handleFormatChange = (e) => {
     setSelectedFormat(e.target.value);
-    console.log(e.target.value)
-    var dimensioni = formats.find(format => format.label.trim() === e.target.value.trim())
-    setFormatWidth(dimensioni.width);
-    setFormatHeight(dimensioni.height);
+    if (e.target.value) {
+      var dimensioni = formats.find(format => format.label.trim() === e.target.value.trim())
+      setFormatWidth(dimensioni.width);
+      setFormatHeight(dimensioni.height);
+    }
+
   };
 
   useEffect(() => {
@@ -65,9 +67,9 @@ export default function Home() {
     var heightProvvisorio;
     var widthProvvisorio;
     if (doubleface) {
-      widthProvvisorio=width*2;
+      widthProvvisorio = width * 2;
     }
-    else{
+    else {
       widthProvvisorio = width;
     }
     var column = Math.floor(formatWidth / widthProvvisorio)
@@ -99,178 +101,97 @@ export default function Home() {
     setColumnDefinitive(column)
   }
 
-  /*
-   const cal = (format, pagX, pagY) => {
-     const marginAll = 2; // 2cm per altezza e lunghezza del formatto del tipografo da rimuovere per lasciare 1cm di bordo ovonque 
-     const marginPage = 0.5;
-     let newTypeX, newTypeY; // NewTypeX/Y = lunghezza/altezza del formatto del tipografo provissorio, le effettive variabili sono typeX/Y
- 
-     // Rimozione margine base 1cm a tutti è salvataggio delle dimensioni effettive nelle variabili di controllo
-     setTypeX(prevTypeX => newTypeX - marginAll);
-     setTypeY(prevTypeY => newTypeY - marginAll);
- 
-     //controllo del lato più lungo per rimuovere un ulterio centimetro per avere un lato da 2cm [1,1,1,2]
-     if (typeX > typeY) {
-       setTypeX(prevTypeX => prevTypeX - 1)
-     }
-     else {
-       setTypeY(prevTypeY => prevTypeY - 1)
-     }
-     //------------------Calcolo Colonne e Margine
-     // Si lavora considerando margini e tutto su solo una riga e una colonna per poi fare 
-     // una moltpiblicazione base x altezza per ottenere il totale
-     //
- 
-     var col = Math.floor(typeX / pagX)
-     do {
-       var checkMargin = false
-       const restoCol = typeX % pagX //calcolo del resto
-       alert(restoCol)
-       if (col == 1) {
- 
-       }
-       else {
-         if (restoCol > (marginPage * (col - 1))) {
-           setScartoX(restoCol - (marginPage * (col - 1)))
-         }
-         else {
-           alert("errore")
-         }
-       }
- 
- 
- 
-     } while (false)
- 
-     // Calcolo quante colonne sono presenti nel folgio
-    
-     var resCol = Math.floor(newTypeX / pagX); 
-     do{
-       var check = false
-       const restoCol = newTypeX % pagX; // senza considerare i margini fra le pagine si vede quante volte entrano le pagine in orrizontale, quindi le colonne
-       console.log(resCol,"resto:" + restoCol, "\n margine tra le pagine : " + marginPage*(resCol-1))
-       setScartoX(restoCol-(marginPage*(resCol-1))) // per calcolare lo scarto orrizonatle, facciamo il resto senza margine - (0,5cm * il numero delle colonne che entrano -1) = cosi avremmo lo scarto effettivo, considerano il margine di 0,5 fra le pagine, il -1 è dovuto che l'ultima pagina non ha un margine da rispettare con qualcuno
- 
-     if (restoCol >= (marginPage*(resCol-1))){
-       console.log("c'entra con il margine");
-       setCol(resCol);
-       check = true;
-     }else{
-       console.log("non c'entra con il margine da 0.5")
-       resCol--;
-       console.log("è stata rimmosa una colonna")
-       return 0;
-     }
-   }while(!check );
- 
-     // Calcolo delle righe Asse Y
-     var resRow = Math.floor(newTypeY / pagY); //6
-     do{
-     var check = false
-     var restoRow = newTypeY % pagY; //2cm
-     console.log(resRow,"resto:" + restoRow, "\n margine tra le pagine : " + marginPage*(resRow-1)) //2.5
-     setScartoY(restoRow-(marginPage*(resRow-1))) //-0,5
- 
-     if (restoRow >= (marginPage*(resRow-1))){
-       console.log("c'entra con il margine");
-       setRow(resRow)
-       check = true;
-     }else{
-       console.log("non c'entra con il margine da 0.5")
-       resRow--
-       console.log("è stata rimmosa una riga")
-     }
-     
-     }while(!check );
- 
- 
-     const marginHand = 1;
-     // Dopo che lo stato è stato effettivamente aggiornato, esegui checkIndicatore
-     if(scartoX > 1 || scartoY > 1){
-       console.log("errore manca margine finale per il braccio")
-     }
-     else{
-       if(typeX>typeY){
-         setTypeX(x=>x-marginHand)
-       }
-       else{
-         setTypeY(x=>x-marginHand)
-       }
-     }
-     **/
-
-
   return (
-    <main className="w-screen min-h-screen p-12">
-      <h1 className="text-xl mb-5">Folianator3000 V0.2</h1>
-      <div className="flex flex-col w-min">
-        <label>
-          <select
-            value={selectedFormat}
-            onChange={handleFormatChange}
-            required
-          >
-            <option value="">Seleziona un formato</option>
-            {formats.map((format, index) => (
-              <option key={index} value={format.label}>
-                {format.label}
-              </option>
-            ))}
-          </select>
-          <label>
-            <div>
-              <label>
+    <div className="w-screen min-h-screen h-full p-12 md:p-24 flex flex-col justify-start items-start bg-white">
+      <main className="  flex flex-col">
+
+        <h1 className="text-3xl mb-5">Folianator3000 V0.2</h1>
+        <div className="flex flex-col w-full space-y-5">
+
+          {/** label selection format */}
+          <label className="w-full flex flex-col">
+            <p><b>Seleziona prima il formato</b>, accanto vedi le dimensioni massime con i margini gia tolti</p>
+            <select
+              className="w-full bg-[#f8f8f8] text-black p-2 rounded-sm"
+              value={selectedFormat}
+              onChange={handleFormatChange}
+              required
+            >
+              <option value="">Seleziona un formato</option>
+              {formats.map((format, index) => (
+                <option key={index} value={format.label}>
+                  {format.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {/** label radio */}
+          <label className="w-full flex flex-col">
+            <p>Seleziona il tipo di foliazione</p>
+            <div className="flex space-x-3">
+              <label className="space-x-1">
                 <input
                   type="radio"
                   value="true"
                   checked={doubleface === true}
                   onChange={handleChangeDoubleFace}
                 />
-                Pagine unite
+                <span>Pagine unite</span>
               </label>
-              <label>
+              <label className="space-x-1">
                 <input
                   type="radio"
                   value="false"
                   checked={doubleface === false}
                   onChange={handleChangeDoubleFace}
                 />
-                Pagine singole
+                <span>Pagine singole</span>
               </label>
-
             </div>
           </label>
-        </label>
-        <input
-          type="number"
-          value={width}
-          disabled={!selectedFormat}
-          placeholder="Inserisci lunghezza"
-          onChange={(e) => verifyInput(e.target.value, true)}
-        ></input>
 
-        <input
-          type="number"
-          value={height}
-          disabled={!selectedFormat}
-          placeholder="Inserisci altezza"
-          onChange={(e) => verifyInput(e.target.value, false)}
-        ></input>
+          {/**Label input */}
+          <label className="flex flex-col">
+            <p>Inserisci le dimensioni <b>della pagina singola in centimetri</b> </p>
+            <div className="flex flex-col space-y-2">
+              <input
+                className="p-2 bg-[#f8f8f8]"
+                type="number"
+                value={width}
+                disabled={!selectedFormat}
+                placeholder="Inserisci la larghezza"
+                onChange={(e) => verifyInput(e.target.value, true)}
+              ></input>
+              <input
+                className="p-2 bg-[#f8f8f8]"
+                type="number"
+                value={height}
+                disabled={!selectedFormat}
+                placeholder="Inserisci l'altezza"
+                onChange={(e) => verifyInput(e.target.value, false)}
+              ></input>
+            </div>
 
-        {/**Cal (Tipo di formato, Lunghezza X del nostro foglio, Altezza Y del nostro foglio) */}
-        <button type="onsubmit" onClick={() => calculate()} className="p-2 bg-red-500"> calcola</button>
-        <div>
-          {rowDefinitive && columnDefinitive && restoFoglioHeight && restoFoglioWidth && 
-            <p>
-              Colonne = {columnDefinitive} <br></br>
-              Righe = {rowDefinitive}<br></br>
-              Pagine = {rowDefinitive*columnDefinitive} <br></br>
-              Resto = {restoFoglioHeight*restoFoglioWidth} in cm^2
-            </p>
-          }
+          </label>
+
+          {/**Cal (Tipo di formato, Lunghezza X del nostro foglio, Altezza Y del nostro foglio) */}
+          <button type="onsubmit" onClick={() => calculate()} className="p-2 bg-red-500 text-white"> calcola</button>
+          <div>
+            {rowDefinitive && columnDefinitive && restoFoglioHeight && restoFoglioWidth &&
+              <p>
+                Colonne = {columnDefinitive} <br></br>
+                Righe = {rowDefinitive}<br></br>
+                Pagine = {rowDefinitive * columnDefinitive} <br></br>
+                Resto = {restoFoglioHeight * restoFoglioWidth} in cm^2
+              </p>
+            }
+          </div>
         </div>
-      </div>
-    </main>
+      </main >
+    </div>
+
+
   );
 
 }

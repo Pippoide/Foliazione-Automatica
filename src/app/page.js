@@ -26,6 +26,12 @@ export default function Home() {
 
   const handleChangeDoubleFace = (e) => {
     setDoubleFace(e.target.value === 'true')
+    if(width*2 > formatWidth){
+      setRowDefinitive(0) //resetta il calcolatore
+    }
+    else{
+      calculate()
+    }
   }
 
   const handleFormatChange = (e) => {
@@ -34,8 +40,11 @@ export default function Home() {
       var dimensioni = formats.find(format => format.label.trim() === e.target.value.trim())
       setFormatWidth(dimensioni.width);
       setFormatHeight(dimensioni.height);
+      if(rowDefinitive>0){
+        setRowDefinitive(0)
+      }
     }
-
+    
   };
 
   useEffect(() => {
@@ -60,6 +69,9 @@ export default function Home() {
       else {
         setHeight(size)
       }
+    }
+    if(rowDefinitive>0){
+      setRowDefinitive(0)
     }
   }
 
@@ -185,12 +197,13 @@ export default function Home() {
                     <span>Righe: {rowDefinitive}</span> 
                     <span>Colonne: {columnDefinitive}</span> 
                   </p>
-                  Pagine = {rowDefinitive * columnDefinitive} <br></br>
-                  Resto = {restoFoglioHeight * restoFoglioWidth} in cm^2
+                  Totali Pagine ({doubleface ? (width*2):width}x{height} cm) = {rowDefinitive * columnDefinitive} <br></br>
+                  <p>Scarto totale: {restoFoglioHeight * restoFoglioWidth} cm<sup>2</sup> su {formatWidth*formatHeight}cm<sup>2</sup></p>
+                  <p>Percentuale scarto: ≈ {(Math.floor((restoFoglioHeight * restoFoglioWidth)/(formatWidth*formatHeight)*100))}%</p>
                 </p>) : (
                   <div className=" bg-[#f8f8f8] p-2 py-4 rounded-sm flex items-start space-x-3">
                     <img src="/icons/warning.svg" alt="warning icon" width={24} height={24}/>
-                    <p>L'applicazione è in stato alfa, al momento deve essere inserito un valore minimo di 3cm per ogni lato, altrimenti l'applicazione non risponde, in caso di crash riaggiornare la pagina</p>
+                    <p>L'applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>illogico</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
                   </div>
                 )
               }

@@ -156,7 +156,7 @@ export default function Home() {
             <p className="text-black">Inserisci le dimensioni <b>della pagina singola in centimetri</b> </p>
             <div className="flex flex-col space-y-2">
               <input
-                className="p-2 bg-[#f8f8f8]"
+                className="p-2 bg-[#f8f8f8] text-black"
                 type="number"
                 value={width}
                 disabled={!selectedFormat}
@@ -164,7 +164,7 @@ export default function Home() {
                 onChange={(e) => verifyInput(e.target.value, true)}
               ></input>
               <input
-                className="p-2 bg-[#f8f8f8]"
+                className="p-2 bg-[#f8f8f8] text-black"
                 type="number"
                 value={height}
                 disabled={!selectedFormat}

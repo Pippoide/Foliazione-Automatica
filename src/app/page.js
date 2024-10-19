@@ -102,96 +102,107 @@ export default function Home() {
   }
 
   return (
-    <div className="w-screen min-h-screen h-full p-12 md:p-24 flex flex-col justify-start items-start bg-white">
-      <main className="  flex flex-col">
+    <div className="relative">
 
-        <h1 className="text-3xl mb-5 text-black">Folianator3000 V0.2</h1>
-        <div className="flex flex-col w-full space-y-5">
+      <div className="w-screen min-h-screen h-full p-12 md:p-24 flex flex-col justify-start items-start bg-white">
+        <main className="flex flex-col md:w-2/5">
+          <h1 className="text-3xl mb-5 text-black">Folianator3000 V0.2</h1>
+          <div className=" flex flex-col w-full space-y-5">
 
-          {/** label selection format */}
-          <label className="w-full flex flex-col">
-            <p className="text-black"><b>Seleziona prima il formato</b>, accanto vedi le dimensioni massime con i margini gia tolti</p>
-            <select
-              className="w-full bg-[#f8f8f8] text-black p-2 rounded-sm"
-              value={selectedFormat}
-              onChange={handleFormatChange}
-              required
-            >
-              <option value="">Seleziona un formato</option>
-              {formats.map((format, index) => (
-                <option key={index} value={format.label}>
-                  {format.label}
-                </option>
-              ))}
-            </select>
-          </label>
+            {/** label selection format */}
+            <label className="w-full flex flex-col">
+              <p className="text-black"><b>Seleziona prima il formato</b>, accanto vedi le dimensioni massime con i margini gia tolti</p>
+              <select
+                className="w-full bg-[#f8f8f8] text-black p-2 rounded-sm"
+                value={selectedFormat}
+                onChange={handleFormatChange}
+                required
+              >
+                <option className="p-2" value="">Seleziona un formato</option>
+                {formats.map((format, index) => (
+                  <option className="p-2" key={index} value={format.label}>
+                    {format.label}
+                  </option>
+                ))}
+              </select>
+            </label>
 
-          {/** label radio */}
-          <label className="w-full flex flex-col">
-            <p className="text-black">Seleziona il tipo di foliazione</p>
-            <div className="flex space-x-3">
-              <label className="space-x-1">
+            {/** label radio */}
+            <label className="w-full flex flex-col">
+              <p className="text-black">Seleziona il tipo di foliazione</p>
+              <div className="flex space-x-3">
+                <label className="space-x-1">
+                  <input
+                    type="radio"
+                    value="true"
+                    checked={doubleface === true}
+                    onChange={handleChangeDoubleFace}
+                  />
+                  <span className="text-black">Pagine unite</span>
+                </label>
+                <label className="space-x-1">
+                  <input
+                    type="radio"
+                    value="false"
+                    checked={doubleface === false}
+                    onChange={handleChangeDoubleFace}
+                  />
+                  <span className="text-black">Pagine singole</span>
+                </label>
+              </div>
+            </label>
+
+            {/**Label input */}
+            <label className="flex flex-col">
+              <p className="text-black">Inserisci le dimensioni <b>della pagina singola in centimetri</b> </p>
+              <div className="flex flex-col space-y-2">
                 <input
-                  type="radio"
-                  value="true"
-                  checked={doubleface === true}
-                  onChange={handleChangeDoubleFace}
-                />
-                <span className="text-black">Pagine unite</span>
-              </label>
-              <label className="space-x-1">
+                  className="p-2 bg-[#f8f8f8] text-black"
+                  type="number"
+                  value={width}
+                  disabled={!selectedFormat}
+                  placeholder="Inserisci la larghezza"
+                  onChange={(e) => verifyInput(e.target.value, true)}
+                ></input>
                 <input
-                  type="radio"
-                  value="false"
-                  checked={doubleface === false}
-                  onChange={handleChangeDoubleFace}
-                />
-                <span className="text-black">Pagine singole</span>
-              </label>
+                  className="p-2 bg-[#f8f8f8] text-black"
+                  type="number"
+                  value={height}
+                  disabled={!selectedFormat}
+                  placeholder="Inserisci l'altezza"
+                  onChange={(e) => verifyInput(e.target.value, false)}
+                ></input>
+              </div>
+
+            </label>
+
+            {/**Cal (Tipo di formato, Lunghezza X del nostro foglio, Altezza Y del nostro foglio) */}
+            <button type="onsubmit" onClick={() => calculate()} className="p-2 bg-red-500 text-white">Ca<i className="mr-[0.1rem]">r</i>cola</button>
+            <div>
+              {rowDefinitive > 0 ? (
+                <p className="text-white p-2 bg-red-500 flex flex-col">
+                  <p className="flex space-x-3" >
+                    <span>Righe: {rowDefinitive}</span> 
+                    <span>Colonne: {columnDefinitive}</span> 
+                  </p>
+                  Pagine = {rowDefinitive * columnDefinitive} <br></br>
+                  Resto = {restoFoglioHeight * restoFoglioWidth} in cm^2
+                </p>) : (
+                  <div className=" bg-[#f8f8f8] p-2 py-4 rounded-sm flex items-start space-x-3">
+                    <img src="/icons/warning.svg" alt="warning icon" width={24} height={24}/>
+                    <p>L'applicazione è in stato alfa, al momento deve essere inserito un valore minimo di 3cm per ogni lato, altrimenti l'applicazione non risponde, in caso di crash riaggiornare la pagina</p>
+                  </div>
+                )
+              }
             </div>
-          </label>
-
-          {/**Label input */}
-          <label className="flex flex-col">
-            <p className="text-black">Inserisci le dimensioni <b>della pagina singola in centimetri</b> </p>
-            <div className="flex flex-col space-y-2">
-              <input
-                className="p-2 bg-[#f8f8f8] text-black"
-                type="number"
-                value={width}
-                disabled={!selectedFormat}
-                placeholder="Inserisci la larghezza"
-                onChange={(e) => verifyInput(e.target.value, true)}
-              ></input>
-              <input
-                className="p-2 bg-[#f8f8f8] text-black"
-                type="number"
-                value={height}
-                disabled={!selectedFormat}
-                placeholder="Inserisci l'altezza"
-                onChange={(e) => verifyInput(e.target.value, false)}
-              ></input>
-            </div>
-
-          </label>
-
-          {/**Cal (Tipo di formato, Lunghezza X del nostro foglio, Altezza Y del nostro foglio) */}
-          <button type="onsubmit" onClick={() => calculate()} className="p-2 bg-red-500 text-white"> calcola</button>
-          <div>
-            {rowDefinitive && columnDefinitive && restoFoglioHeight && restoFoglioWidth &&
-              <p className="text-black">
-                Colonne = {columnDefinitive} <br></br>
-                Righe = {rowDefinitive}<br></br>
-                Pagine = {rowDefinitive * columnDefinitive} <br></br>
-                Resto = {restoFoglioHeight * restoFoglioWidth} in cm^2
-              </p>
-            }
           </div>
-        </div>
-      </main >
+        </main >
+
+      </div>
+      <footer className=" absolute bottom-0 w-full flex justify-center items-center bg-red-500 p-4">
+        <p className="text-white">Per eventuali querele scrivere <a className="text-black underline" href="https://www.instagram.com/pii.studios/"><b>a questo account</b></a> | per le cose da nerd  <a className="text-black underline" href="https://github.com/Pippoide/Foliazione-Automatica"><b>link alla repository</b> </a> </p>
+      </footer>
     </div>
-
-
   );
 
 }

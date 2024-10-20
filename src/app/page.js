@@ -206,7 +206,7 @@ export default function Home() {
                 </p>) : (
                   <div className=" bg-[#f8f8f8] p-2 py-4 rounded-sm flex items-start space-x-3">
                     <img src="/icons/warning.svg" alt="warning icon" width={24} height={24}/>
-                    <p>L&apos;applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>impossibile da fare</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
+                    <p className="text-black">L&apos;applicazione è in stato alfa, al momento se noti qualcosa di insolito <i>es: colonne = 0</i> probabilmente hai inserito dei dati illogici con il formatto scelto <i>es: larghezza 55cm in doppia pagina con formatto 100x70 è <b>impossibile da fare</b></i>, riaggiorna gli input e ripremi il bottono caRcola</p>
                   </div>
                 )
               }

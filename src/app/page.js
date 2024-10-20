@@ -115,9 +115,9 @@ export default function Home() {
   }
 
   return (
-    <div className="relative">
+    <div className="flex flex-col min-h-screen justify-between bg-white">
 
-      <div className="w-screen min-h-screen h-full p-12 md:p-24 flex flex-col justify-start items-start bg-white">
+      <div className="w-screen h-full p-12 md:p-24 flex flex-col justify-start items-start ">
         <main className="flex flex-col md:w-2/5">
           <h1 className="text-3xl mb-5 text-black">Folianator3000 V0.2</h1>
           <div className=" flex flex-col w-full space-y-5">
@@ -215,7 +215,7 @@ export default function Home() {
         </main >
 
       </div>
-      <footer className=" absolute bottom-0 w-full flex justify-center items-center bg-red-500 p-4">
+      <footer className="w-full flex justify-center items-center bg-red-500 p-4">
         <p className="text-white">Per eventuali querele o commenti scrivere <a className="text-black underline" href="https://www.instagram.com/pii.studios/"><b>a questo account</b></a> | per le cose di noi nerd  <a className="text-black underline" href="https://github.com/Pippoide/Foliazione-Automatica"><b>link alla repository</b> </a> </p>
       </footer>
     </div>

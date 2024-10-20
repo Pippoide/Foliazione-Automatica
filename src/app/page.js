@@ -28,6 +28,7 @@ export default function Home() {
     setDoubleFace(e.target.value === 'true')
     if(width*2 > formatWidth){
       alert("hai inserito una larghezza troppo grande per avere la foliazione a pagine affiancate, prova a cambiar formato o dimensioni")
+      setDoubleFace(false)
     }
       setRowDefinitive(0) //resetta il calcolatore
   }

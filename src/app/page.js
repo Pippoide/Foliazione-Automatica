@@ -26,7 +26,12 @@ export default function Home() {
 
   const handleChangeDoubleFace = (e) => {
     setDoubleFace(e.target.value === 'true')
+    if(width*2 > formatWidth){
       setRowDefinitive(0) //resetta il calcolatore
+    }
+    else{
+      calculate()
+    }
   }
 
   const handleFormatChange = (e) => {
@@ -36,11 +41,11 @@ export default function Home() {
       setFormatWidth(dimensioni.width);
       setFormatHeight(dimensioni.height);
     }
-    else{
+    
       if(rowDefinitive>0){
         setRowDefinitive(0)
       }
-    }
+  
     
   };
   console.log("Ciao, allora non sono l'unico che fa ispeziona nei siti O.O!, 20/10/2024")

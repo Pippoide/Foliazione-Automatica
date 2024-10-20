@@ -28,7 +28,10 @@ export const metadata = {
     icon: '/favicon.ico', // Percorso della favicon
   }
 };
+{
+  console.log("Ciao, allora non sono l'unico che fa ispeziona nei siti O.O!, 20/10/2024")
 
+}
 export default function RootLayout({ children }) {
   return (
    

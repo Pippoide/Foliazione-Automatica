@@ -172,6 +172,7 @@ export default function Home() {
                 <input
                   className="p-2 bg-[#f8f8f8] text-black"
                   type="number"
+                  inputmode="decimal"
                   value={width}
                   disabled={!selectedFormat}
                   placeholder="Inserisci la larghezza"
@@ -180,6 +181,7 @@ export default function Home() {
                 <input
                   className="p-2 bg-[#f8f8f8] text-black"
                   type="number"
+                  inputmode="decimal"
                   value={height}
                   disabled={!selectedFormat}
                   placeholder="Inserisci l'altezza"

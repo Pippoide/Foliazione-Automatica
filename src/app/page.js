@@ -26,12 +26,7 @@ export default function Home() {
 
   const handleChangeDoubleFace = (e) => {
     setDoubleFace(e.target.value === 'true')
-    if(width*2 > formatWidth){
       setRowDefinitive(0) //resetta il calcolatore
-    }
-    else{
-      calculate()
-    }
   }
 
   const handleFormatChange = (e) => {

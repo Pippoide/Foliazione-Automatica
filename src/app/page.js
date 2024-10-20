@@ -40,13 +40,15 @@ export default function Home() {
       var dimensioni = formats.find(format => format.label.trim() === e.target.value.trim())
       setFormatWidth(dimensioni.width);
       setFormatHeight(dimensioni.height);
+    }
+    else{
       if(rowDefinitive>0){
         setRowDefinitive(0)
       }
     }
     
   };
-  console.log("Ciao, allora non sono l'unico che fa ispeziona nei siti O.O!, 20/10/2024, programmato e ideato da Filippo Poma durante il 1°/2° anno di IED a Graphic Design")
+  console.log("Ciao, allora non sono l'unico che fa ispeziona nei siti O.O!, 20/10/2024")
 
   useEffect(() => {
     
